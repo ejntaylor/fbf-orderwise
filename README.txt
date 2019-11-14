@@ -29,6 +29,11 @@ Head to WooCommerce > export
 3. Choose Orders (default), Set Output to XML, create one field (not used but required)
 4. For debugging you can choose Indent Output
 5. Save
+6. Head to Automated Exports
+7. Create new Automated Exports
+8. Choose XML, Orders, Format = Orderwise
+9. Order Status can be selected to just new orders (processing) -- note that after the order is imported then this status is cahnage to compelte.
+
 
 
 == Screenshots ==
