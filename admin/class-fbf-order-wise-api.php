@@ -158,7 +158,13 @@ class Fbf_Order_Wise_Api
         // call wp database and get last added export_job
         global $wpdb;
         $query = "SELECT * FROM wp_options WHERE option_name LIKE 'wc_customer_order_export_background_export_job_%' ORDER BY option_id DESC LIMIT 1";
-        $result = $wpdb->get_row($wpdb->prepare($query));
+        $result = $wpdb->get_row($query);
+
+        // empty message
+        if(!$result) {
+            echo 'No Exports Found';
+            exit;
+        }
 
         // get option name and strip to get id
         $option_name = $result->option_name;
