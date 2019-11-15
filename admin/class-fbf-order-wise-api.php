@@ -65,6 +65,13 @@ class Fbf_Order_Wise_Api
         // get the latest export id
         $export_id = $this->getLatestExportId();
 
+
+        if(!$export_id) {
+            echo 'No Exports Found';
+            exit;
+        }
+
+
         // get export
         $export = wc_customer_order_csv_export_get_export(wc_clean($export_id));
 
@@ -106,10 +113,10 @@ class Fbf_Order_Wise_Api
         try {
 
             // dev
-            $post_received = '12345~17~19';
+            // $post_received = '12345~17~19';
 
             // receive POST var of tilda separated order numbers
-            // $post_received = $_POST['order_ids'];
+            $post_received = $_POST['order_ids'];
 
             // create array from POST
             $result = [];
