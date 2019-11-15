@@ -1,0 +1,21 @@
+{
+  "name": "raisonon/fbf-orderwise",
+  "description": "",
+  "keywords": [
+    "wordpress",
+    "plugin"
+  ],
+  "homepage": "https://github.com/raisonon/fbf-orderwise",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Elliot Taylor",
+      "email": "elliot@raison.co",
+      "homepage": "https://raison.co"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=7.1"
+  }
+}
