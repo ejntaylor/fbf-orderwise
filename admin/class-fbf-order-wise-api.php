@@ -100,8 +100,10 @@ class Fbf_Order_Wise_Api
 
         try {
 
-            // receive POST var of tilda separated order numbers
+            // dev
             $post_received = '12345~17~19';
+
+            // receive POST var of tilda separated order numbers
             // $post_received = $_POST['order_ids'];
 
             // create array from POST
