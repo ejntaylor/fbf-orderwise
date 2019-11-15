@@ -58,13 +58,12 @@ class Fbf_Order_Wise_Api
         // auth checks
 
         // get the latest export id 
-        $export_id = 'd8be76d4479079623e23bc32b8235aca';
+        $export_id = $this->getLatestExportId();
 
-        // download file
-        // based on download_exported_file() ..download-handler.php
-
+        // get export
         $export = wc_customer_order_csv_export_get_export(wc_clean($export_id));
 
+        // check export
         if (!$export) {
             echo 'Error: Export not found';
         }
@@ -132,5 +131,26 @@ class Fbf_Order_Wise_Api
             //code to handle the exception
             var_dump($e);
         }
+    }
+
+    // find last entry which starts with wc_customer_order_export_background_export_job_
+
+    public function getLatestExportId()
+    {
+
+        // for dev
+        // $export_id = 'd8be76d4479079623e23bc32b8235aca';
+
+        // call wp database and get last added export_job
+        global $wpdb;
+        $query = "SELECT * FROM wp_options WHERE option_name LIKE 'wc_customer_order_export_background_export_job_%' ORDER BY option_id DESC LIMIT 1";
+        $result = $wpdb->get_row($wpdb->prepare($query));
+
+        // get option name and strip to get id
+        $option_name = $result->option_name;
+        $export_id = preg_replace('/^wc_customer_order_export_background_export_job_/', '', $option_name);
+
+        // return
+        return $export_id;
     }
 }
