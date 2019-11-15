@@ -19,6 +19,11 @@ class Fbf_Order_Wise_Api
         add_action('init', array($this, 'add_endpoint'));
     }
 
+    public function enqueue_styles()
+    { }
+
+    public function enqueue_scripts()
+    { }
 
     // /api/v2/orderwise_export
     // /api/v2/orderwise_success
@@ -57,7 +62,7 @@ class Fbf_Order_Wise_Api
 
         // auth checks
 
-        // get the latest export id 
+        // get the latest export id
         $export_id = $this->getLatestExportId();
 
         // get export
