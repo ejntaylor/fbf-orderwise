@@ -239,9 +239,9 @@ class Fbf_Order_Wise_Admin
         foreach ($order->get_items() as $item_id => $item_data) {
             $product = $order->get_product_from_item($item_data);
 
-            // exit loop if not product found
+            // skip loop if not product found
             if (!$product) {
-                break;
+                continue;
             }
 
             // create array
