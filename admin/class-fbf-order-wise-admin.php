@@ -56,6 +56,7 @@ class Fbf_Order_Wise_Admin
 
         add_filter('wc_customer_order_xml_export_suite_format_definition', array($this, 'sv_wc_xml_export_custom_format_settings'), 10, 3);
         add_filter('wc_customer_order_xml_export_suite_orders_header', array($this, 'sv_wc_customer_order_xml_export_suite_orders_xml_data_add_attributes_to_root_element'));
+        add_filter('wc_customer_order_xml_export_suite_orders_footer', array($this, 'sv_wc_customer_order_xml_export_suite_orders_xml_data_add_attributes_to_root_element_footer'));
         add_filter('wc_customer_order_xml_export_suite_orders_xml_data', array($this, 'sv_wc_xml_export_order_name'), 10, 3);
         add_filter('wc_customer_order_xml_export_suite_order_data', array($this, 'sv_wc_xml_export_order_item_format'), 10, 3);
         add_filter('wc_customer_order_xml_export_suite_order_line_item', array($this, 'sv_wc_xml_export_order_line_item'), 10, 3);
@@ -129,6 +130,16 @@ class Fbf_Order_Wise_Admin
             '<Orders>',
             '<SalesOrders>',
             $header
+        );
+    }
+
+
+    function sv_wc_customer_order_xml_export_suite_orders_xml_data_add_attributes_to_root_element_footer($footer)
+    {
+        return str_replace(
+            '</Orders>',
+            '</SalesOrders>',
+            $footer
         );
     }
 
