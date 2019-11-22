@@ -245,7 +245,7 @@ class Fbf_Order_Wise_Admin
             }
 
             // create array
-            $items[] = [
+            $items['SalesOrderLine'] = [
                 'eCommerceCode' => $product->get_sku(),
                 'Code' => $product->get_sku(),
                 'Quantity' => $item_data['qty'],
