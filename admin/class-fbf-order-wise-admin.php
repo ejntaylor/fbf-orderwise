@@ -128,7 +128,8 @@ class Fbf_Order_Wise_Admin
     {
         return str_replace(
             '<Orders>',
-            '<SalesOrders>',
+            '<XMLFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+ <SalesOrders>',
             $header
         );
     }
@@ -161,13 +162,19 @@ class Fbf_Order_Wise_Admin
         // list($shipping_items, $shipping_methods, $shipping_methods_ids) = $export_gen->get_shipping_items($order);
         // list($fee_items, $fee_total, $fee_tax_total)                    = $export_gen->get_fee_items($order);
 
+        // format date
+        $datetime = new DateTime($order->order_date);
+        $date = $datetime->format("Y-m-d\TH:i:s");
 
+
+        // create XML feed
         $new_format = [
-            'OrderNumber' => get_post_meta($order->id, '_order_number', true),
-            'OrderDate' => $order->order_date,
+            // 'OrderNumber' => get_post_meta($order->id, '_order_number', true),
+            'OrderNumber' => $order->get_id(),
+            'OrderDate' => $date,
             'OrderAnalysis' => 'ECommerce Site',
             'SpecialDeliveryInstructions' => $order->customer_note,
-            'CustomerOrderRef' => $order->id,
+            'CustomerOrderRef' => $order->get_id(),
             // 'DeliveryMethod' => implode(', ', $shipping_methods),
             'DeliveryGross' => $order->get_total_shipping(),
             'DeliveryNet' => $order->get_total_shipping() - $order->get_shipping_tax(),
