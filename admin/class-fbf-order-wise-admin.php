@@ -139,7 +139,7 @@ class Fbf_Order_Wise_Admin
     {
         return str_replace(
             '</Orders>',
-            '</XMLFile></SalesOrders>',
+            '</SalesOrders></XMLFile>',
             $footer
         );
     }
