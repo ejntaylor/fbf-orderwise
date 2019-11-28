@@ -252,12 +252,12 @@ class Fbf_Order_Wise_Admin
             }
 
             // create array
-            $items['SalesOrderLine'] = [
+            $items['SalesOrderLine'][] = [
                 'eCommerceCode' => $product->get_sku(),
                 'Code' => $product->get_sku(),
                 'Quantity' => $item_data['qty'],
                 'eCommerceItemID' => $product->id,
-                'ItemGross' => $product->get_price(),
+                'ItemGross' => round($product->get_price(), 2),
                 'TaxCode' => $product->tax_class
             ];
         }
