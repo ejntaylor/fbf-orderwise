@@ -157,10 +157,6 @@ class Fbf_Order_Wise_Admin
     {
 
         // require_once(ABSPATH . '/wp-content/plugins/woocommerce-customer-order-xml-export-suite/includes/class-wc-customer-order-xml-export-suite-generator.php');
-        // $export_gen = new WC_Customer_Order_XML_Export_Suite_Generator();
-
-        // list($shipping_items, $shipping_methods, $shipping_methods_ids) = $export_gen->get_shipping_items($order);
-        // list($fee_items, $fee_total, $fee_tax_total)                    = $export_gen->get_fee_items($order);
 
         // format date
         $datetime = new DateTime($order->order_date);
@@ -175,7 +171,7 @@ class Fbf_Order_Wise_Admin
             'OrderAnalysis' => 'ECommerce Site',
             'SpecialDeliveryInstructions' => $order->customer_note,
             'CustomerOrderRef' => $order->get_id(),
-            // 'DeliveryMethod' => implode(', ', $shipping_methods),
+            'DeliveryMethod' => $order->get_shipping_method(),
             'DeliveryGross' => $order->get_total_shipping(),
             'DeliveryNet' => $order->get_total_shipping() - $order->get_shipping_tax(),
             'DeliveryTax' => $order->get_shipping_tax(),
